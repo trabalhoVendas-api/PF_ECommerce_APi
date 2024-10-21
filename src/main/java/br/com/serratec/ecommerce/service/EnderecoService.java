@@ -10,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 import br.com.serratec.ecommerce.dto.EnderecoResponseDTO;
 import br.com.serratec.ecommerce.entity.Endereco;
 import br.com.serratec.ecommerce.repository.EnderecoRepository;
-import io.swagger.v3.oas.annotations.servers.Server;
 
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class EnderecoService {
 		}else {
 			RestTemplate rs = new RestTemplate();
 			
-			String uri = "https://viacep.com.br/ws/"+ cep + "json/";
+			String uri = "https://viacep.com.br/ws/"+ cep + "/json/";
 			Optional<Endereco> enderecoViaCep = Optional.ofNullable(rs.getForObject(uri, Endereco.class));
 			if(enderecoViaCep.get().getCep() !=null) {
 				String cepSemTraco = enderecoViaCep.get().getCep().replaceAll("-", "");
