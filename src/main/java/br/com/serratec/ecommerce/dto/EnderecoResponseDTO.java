@@ -7,11 +7,11 @@ public class EnderecoResponseDTO {
 	private String cep;
 	private String logradouro;
 	private String bairro;
-	private String cidade;
-	private String ur;
+	private String localidade;
+	private String uf;
 	
 	public EnderecoResponseDTO() {
-		//construtor vazio
+		//construtor vazi...
 	}
 
 	public EnderecoResponseDTO(Endereco endereco) {
@@ -19,8 +19,8 @@ public class EnderecoResponseDTO {
 		this.cep = endereco.getCep();
 		this.logradouro = endereco.getLogradouro();
 		this.bairro = endereco.getBairro();
-		this.cidade = endereco.getCidade();
-		this.ur = endereco.getUr();
+		this.localidade = endereco.getLocalidade();
+		this.uf = endereco.getUf();
 	}
 
 	public String getCep() {
@@ -47,20 +47,20 @@ public class EnderecoResponseDTO {
 		this.bairro = bairro;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public String getLocalidade() {
+		return localidade;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
 	}
 
 	public String getUr() {
-		return ur;
+		return uf;
 	}
 
-	public void setUr(String ur) {
-		this.ur = ur;
+	public void setUr(String uf) {
+		this.uf = uf;
 	}
 	
 }

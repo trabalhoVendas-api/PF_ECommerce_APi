@@ -20,4 +20,33 @@ public class ErroResposta {
 	public Integer getStatus() {
 		return status;
 	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public LocalDateTime getDataHora() {
+		return dataHora;
+	}
+
+	public void setDataHora(LocalDateTime dataHora) {
+		this.dataHora = dataHora;
+	}
+
+	public List<String> getErros() {
+		return erros;
+	}
+
+	public void setErros(List<String> erros) {
+		this.erros = erros;
+	}
+
 }

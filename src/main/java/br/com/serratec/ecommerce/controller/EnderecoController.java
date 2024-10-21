@@ -12,7 +12,7 @@ import br.com.serratec.ecommerce.service.EnderecoService;
 
 @RestController
 @RequestMapping("/enderecos")
-public class EnderecoControler {
+public class EnderecoController {
 	
 	@Autowired
 	private EnderecoService service;
