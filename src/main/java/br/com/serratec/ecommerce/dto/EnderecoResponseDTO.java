@@ -11,7 +11,7 @@ public class EnderecoResponseDTO {
 	private String uf;
 	
 	public EnderecoResponseDTO() {
-		//construtor vazio
+		//construtor vazi...
 	}
 
 	public EnderecoResponseDTO(Endereco endereco) {

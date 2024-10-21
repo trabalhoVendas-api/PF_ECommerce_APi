@@ -17,6 +17,7 @@ public class Endereco {
 	private String localidade;
 	private String uf;
 	
+	
 	public Long getId() {
 		return id;
 	}
@@ -53,5 +54,5 @@ public class Endereco {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
+	//teste
 }
