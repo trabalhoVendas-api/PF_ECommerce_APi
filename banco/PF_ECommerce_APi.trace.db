@@ -54,3 +54,6 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:522)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 50 more
+2024-10-23 17:16:04.991714-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM PAGAMENTO"; expected "identifier"; SQL statement:
+DELETE * FROM PAGAMENTO [42001-224]
