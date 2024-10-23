@@ -15,52 +15,63 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    
+
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itensPedido = new ArrayList<>();
 
     private LocalDateTime dataPedido;
 
+
     public Long getId() {
-        return id;
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public StatusPedido getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
+	}
+
+	public List<ItemPedido> getItensPedido() {
+		return itensPedido;
+	}
+
+	public void setItensPedido(List<ItemPedido> itensPedido) {
+		this.itensPedido = itensPedido;
+	}
+
+	public LocalDateTime getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(LocalDateTime dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+
+	public void adicionarItem(ItemPedido item) {
+        itensPedido.add(item);
+        item.setPedido(this); 
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public List<ItemPedido> getItensPedido() {
-        return itensPedido;
-    }
-
-    public void setItensPedido(List<ItemPedido> itensPedido) {
-        this.itensPedido = itensPedido;
-    }
-
-    public LocalDateTime getDataPedido() {
-        return dataPedido;
-    }
-
-    public void setDataPedido(LocalDateTime dataPedido) {
-        this.dataPedido = dataPedido;
-    }
-
-    public StatusPedido getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusPedido status) {
-        this.status = status;
+    public void removerItem(ItemPedido item) {
+        itensPedido.remove(item);
+        item.setPedido(null); 
     }
 }
