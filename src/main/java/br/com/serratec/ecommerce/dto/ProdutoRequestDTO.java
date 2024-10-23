@@ -1,11 +1,13 @@
 package br.com.serratec.ecommerce.dto;
 
+import br.com.serratec.ecommerce.entity.Categoria;
 import br.com.serratec.ecommerce.entity.Produto;
 
 public class ProdutoRequestDTO {
 	private String nome;
 	private Integer quantidade;
 	private Double preco;
+	public Categoria categoria;
 
 	public ProdutoRequestDTO() {
 		// TODO Auto-generated constructor stub
@@ -15,8 +17,17 @@ public class ProdutoRequestDTO {
 		this.nome = getNome();
 		this.quantidade = getQuantidade();
 		this.preco = getPreco();
+		this.categoria = getCategoria();
 	}
 	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	public Double getPreco() {
 		return preco;
 	}

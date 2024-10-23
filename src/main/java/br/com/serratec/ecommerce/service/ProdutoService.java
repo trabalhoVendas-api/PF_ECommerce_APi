@@ -20,13 +20,13 @@ public class ProdutoService {
 	private ProdutoRepository repository;
 
 	@Transactional
-	public ProdutoResponseDTO inserir (ProdutoRequestDTO dto) {
+	public ProdutoResponseDTO inserir(ProdutoRequestDTO dto) {
 		
 		Produto produto = new Produto();
 		produto.setNome(dto.getNome());
 		produto.setQuantidade(dto.getQuantidade());
 		produto.setPreco(dto.getPreco());
-		//produto.setCategoria(dto.getCategoria);
+		produto.setCategoria(dto.getCategoria());
 
 		produto = repository.save(produto);
 		
