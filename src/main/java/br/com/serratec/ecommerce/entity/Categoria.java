@@ -3,11 +3,14 @@ package br.com.serratec.ecommerce.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Categoria {
@@ -15,9 +18,11 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
+	@Column(unique = true)
 	private String nome;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	private List<Produto> produtos = new ArrayList<>();
 
 	public Long getId() {
