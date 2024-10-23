@@ -23,6 +23,8 @@ public class Cliente {
 	
 	private String telefone;
 	
+	private String senha;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
@@ -30,6 +32,14 @@ public class Cliente {
 	private String numero;
 	private String complemento;
 	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public String getNumero() {
 		return numero;
 	}
