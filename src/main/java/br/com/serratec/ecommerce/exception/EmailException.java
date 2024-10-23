@@ -1,7 +1,12 @@
 package br.com.serratec.ecommerce.exception;
 
 public class EmailException extends RuntimeException {
-    public EmailException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public EmailException(String message) {
         super(message);
     }
 }

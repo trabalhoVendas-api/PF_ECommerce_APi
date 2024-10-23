@@ -1,6 +1,7 @@
 package br.com.serratec.ecommerce.dto;
 
 import br.com.serratec.ecommerce.entity.Cliente;
+import br.com.serratec.ecommerce.entity.Endereco;
 
 public class ClienteRequestDTO {
 	private Long id;
@@ -8,13 +9,29 @@ public class ClienteRequestDTO {
 	private String email;
 	private String senha;
 	private String cep;
+	private String cpf;
+	private String telefone;
 	
-	public ClienteRequestDTO(Cliente cliente) {
-		super();
-		this.id = cliente.getId();
-		this.nome = cliente.getNome();
-		this.email = cliente.getEmail();
-		this.senha = cliente.getSenha();
+
+	public ClienteRequestDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getSenha() {
