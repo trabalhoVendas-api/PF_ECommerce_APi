@@ -19,13 +19,13 @@ public class PedidoService {
 	private ProdutoRepository produtoRepository;
 
 	public Pedido inserirPedido(Pedido pedido) {
-		for (ItemPedido item : pedido.getItensPedido()) {
-			item.setPedido(pedido);
-			Produto produto = produtoRepository.findById(item.getProduto().getId())
-					.orElseThrow(() -> new RuntimeException("Produto não encontrado"));
-			item.setProduto(produto);
-		}
-		return pedidoRepository.save(pedido);
+	    for (ItemPedido item : pedido.getItensPedido()) {
+	        item.setPedido(pedido);
+	        Produto produto = produtoRepository.findById(item.getProduto().getId())
+	            .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+	        item.setProduto(produto);
+	    }
+	    return pedidoRepository.save(pedido);
 	}
 
 	public Pedido editarPedido(Long id, Pedido pedido) {

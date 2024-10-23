@@ -4,37 +4,29 @@ import br.com.serratec.ecommerce.entity.Categoria;
 import br.com.serratec.ecommerce.entity.Produto;
 
 public class ProdutoRequestDTO {
-	private String nome;
-	private Integer quantidade;
-	private Double preco;
-	public Categoria categoria;
+    private Long id;
+    private String nome;
+    private Integer quantidade;
+    private Double preco;
+    public Categoria categoria;
 
-	public ProdutoRequestDTO() {
-		// TODO Auto-generated constructor stub
-	}
+    public ProdutoRequestDTO() {}
 
-	public ProdutoRequestDTO(Produto produto) {
-		this.nome = getNome();
-		this.quantidade = getQuantidade();
-		this.preco = getPreco();
-		this.categoria = getCategoria();
-	}
-	
-	public Categoria getCategoria() {
-		return categoria;
-	}
+    public ProdutoRequestDTO(Produto produto) {
+        this.id = produto.getId();
+        this.nome = produto.getNome();
+        this.quantidade = produto.getQuantidade();
+        this.preco = produto.getPreco();
+        this.categoria = produto.getCategoria();
+    }
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 	public String getNome() {
 		return nome;
@@ -51,6 +43,22 @@ public class ProdutoRequestDTO {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-	
-	
+
+	public Double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+    
+    
 }
