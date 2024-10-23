@@ -55,11 +55,11 @@ public class EnderecoResponseDTO {
 		this.localidade = localidade;
 	}
 
-	public String getUr() {
+	public String getUf() {
 		return uf;
 	}
 
-	public void setUr(String uf) {
+	public void setUf(String uf) {
 		this.uf = uf;
 	}
 	

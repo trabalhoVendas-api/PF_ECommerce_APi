@@ -11,13 +11,44 @@ public class ClienteRequestDTO {
 	private String cep;
 	private String cpf;
 	private String telefone;
-	
+	private String numero;
+	private String complemento;
+		
+	public ClienteRequestDTO(Cliente cliente) {
+		super();
+		this.id = cliente.getId();
+		this.nome = cliente.getNome();
+		this.email = cliente.getEmail();
+		this.senha = cliente.getSenha();
+		this.numero = cliente.getNumero();
+		this.complemento = cliente.getComplemento();
+		
+		this.telefone = cliente.getTelefone();
+		this.cep= cliente.getCpf();
+		
+	}
 
 	public ClienteRequestDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
 	public String getTelefone() {
 		return telefone;
 	}

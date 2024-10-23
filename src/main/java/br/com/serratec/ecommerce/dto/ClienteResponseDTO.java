@@ -1,24 +1,27 @@
 package br.com.serratec.ecommerce.dto;
 
 import br.com.serratec.ecommerce.entity.Cliente;
+import br.com.serratec.ecommerce.entity.Endereco;
 
 public class ClienteResponseDTO {
 	private String nome;
 	private String email;
-	private String cep;
-
+	
+private Endereco endereco;
+	
 	public ClienteResponseDTO(Cliente cliente) {
 		this.nome = cliente.getNome();
 		this.email = cliente.getEmail();
-		this.cep =cliente.getEndereco().getCep();
+		this.endereco = cliente.getEndereco();
+		
 	}
 
-	public String getCep() {
-		return cep;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getNome() {

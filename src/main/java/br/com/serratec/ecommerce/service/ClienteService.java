@@ -74,7 +74,7 @@ public class ClienteService {
 				endereco.setBairro(enderecoViaCep.get().getBairro());
 				endereco.setLocalidade(enderecoViaCep.get().getLocalidade());
 				endereco.setLogradouro(enderecoViaCep.get().getUf());
-				//enderecoRepository.save(endereco);
+				enderecoRepository.save(endereco);
 			} else {
 				throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
 			}
