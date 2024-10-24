@@ -6,7 +6,15 @@ public class ItemPedidoDTO {
     private Double desconto;
     private Double preco;
 
-    public Long getProdutoId() {
+    /*public ItemPedidoDTO(Long produtoId, Integer quantidade, Double desconto, Double preco) {
+		super();
+		this.produtoId = produtoId;
+		this.quantidade = quantidade;
+		this.desconto = desconto;
+		this.preco = preco;
+	}*/
+
+	public Long getProdutoId() {
         return produtoId;
     }
 

@@ -10,22 +10,22 @@ import java.util.List;
 @Entity
 public class Pedido {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
 
-    @Enumerated(EnumType.STRING)
-    private StatusPedido status;
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<ItemPedido> itensPedido = new ArrayList<>();
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<ItemPedido> itensPedido = new ArrayList<>();
 
-    private LocalDateTime dataPedido;
+	private LocalDateTime dataPedido;
 
 	public Long getId() {
 		return id;
@@ -67,5 +67,4 @@ public class Pedido {
 		this.dataPedido = dataPedido;
 	}
 
-   
 }

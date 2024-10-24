@@ -4,49 +4,59 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class PedidoDTO {
-    private Long id;
-    private Long clienteId;
-    private String status;
-    private LocalDateTime dataPedido;
-    private List<ItemPedidoDTO> itensPedido;
+	private Long id;
+	private Long clienteId;
+	private String status;
+	private LocalDateTime dataPedido;
+	private List<ItemPedidoDTO> itensPedido;
 
-    public Long getId() {
-        return id;
-    }
+	/*public PedidoDTO(Long id, Long clienteId, String status, LocalDateTime dataPedido,
+			List<ItemPedidoDTO> itensPedido) {
+		super();
+		this.id = id;
+		this.clienteId = clienteId;
+		this.status = status;
+		this.dataPedido = dataPedido;
+		this.itensPedido = itensPedido;
+	}*/
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Long getClienteId() {
-        return clienteId;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
-    }
+	public Long getClienteId() {
+		return clienteId;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setClienteId(Long clienteId) {
+		this.clienteId = clienteId;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public LocalDateTime getDataPedido() {
-        return dataPedido;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public void setDataPedido(LocalDateTime dataPedido) {
-        this.dataPedido = dataPedido;
-    }
+	public LocalDateTime getDataPedido() {
+		return dataPedido;
+	}
 
-    public List<ItemPedidoDTO> getItensPedido() {
-        return itensPedido;
-    }
+	public void setDataPedido(LocalDateTime dataPedido) {
+		this.dataPedido = dataPedido;
+	}
 
-    public void setItensPedido(List<ItemPedidoDTO> itensPedido) {
-        this.itensPedido = itensPedido;
-    }
+	public List<ItemPedidoDTO> getItensPedido() {
+		return itensPedido;
+	}
+
+	public void setItensPedido(List<ItemPedidoDTO> itensPedido) {
+		this.itensPedido = itensPedido;
+	}
 }
