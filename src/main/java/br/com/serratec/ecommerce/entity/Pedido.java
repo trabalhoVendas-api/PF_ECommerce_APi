@@ -1,6 +1,8 @@
 package br.com.serratec.ecommerce.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +22,12 @@ public class Pedido {
     private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<ItemPedido> itensPedido = new ArrayList<>();
 
     private LocalDateTime dataPedido;
 
-
-    public Long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -65,13 +67,5 @@ public class Pedido {
 		this.dataPedido = dataPedido;
 	}
 
-	public void adicionarItem(ItemPedido item) {
-        itensPedido.add(item);
-        item.setPedido(this); 
-    }
-
-    public void removerItem(ItemPedido item) {
-        itensPedido.remove(item);
-        item.setPedido(null); 
-    }
+   
 }
