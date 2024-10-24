@@ -27,7 +27,7 @@ public class Cliente {
 	private String senha;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "id_endereco")
+	//@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
 	private String numero;
