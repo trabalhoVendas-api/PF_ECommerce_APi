@@ -1,6 +1,10 @@
 package br.com.serratec.ecommerce.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +34,9 @@ public class Produto {
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
+	
+	@OneToMany(mappedBy = "produto")
+    private List<Avaliacao> avaliacoes;
 
 	public Long getId() {
 		return id;
@@ -62,5 +69,30 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	
+	public List<Avaliacao> getAvaliacoes() {
+		return avaliacoes;
+	}
+
+	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+		this.avaliacoes = avaliacoes;
+	}
+
+	public void setMediaAvaliacoes(Double mediaAvaliacoes) {
+		this.mediaAvaliacoes = mediaAvaliacoes;
+	}
+
+	@Transient
+    private Double mediaAvaliacoes;
+
+    public Double getMediaAvaliacoes() {
+        if (avaliacoes == null || avaliacoes.isEmpty()) {
+            return 0.0;
+        }
+        return avaliacoes.stream()
+            .mapToInt(Avaliacao::getNota)
+            .average()
+            .orElse(0.0);
+    }
 
 }
