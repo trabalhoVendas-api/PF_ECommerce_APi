@@ -12,61 +12,61 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.serratec.ecommerce.config.MailConfig;
-import br.com.serratec.ecommerce.dto.ClienteRequestDTO;
-import br.com.serratec.ecommerce.dto.ClienteResponseDTO;
-import br.com.serratec.ecommerce.entity.Cliente;
+import br.com.serratec.ecommerce.dto.FornecedorRequestDTO;
+import br.com.serratec.ecommerce.dto.FornecedorResponseDTO;
 import br.com.serratec.ecommerce.entity.Endereco;
+import br.com.serratec.ecommerce.entity.Fornecedor;
 import br.com.serratec.ecommerce.exception.EmailException;
 import br.com.serratec.ecommerce.exception.ResourceNotFoundException;
-import br.com.serratec.ecommerce.repository.ClienteRepository;
 import br.com.serratec.ecommerce.repository.EnderecoRepository;
+import br.com.serratec.ecommerce.repository.FornecedorRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-public class ClienteService {
+public class FornecedorService {
 
     @Autowired
-    private ClienteRepository repository;
+    private FornecedorRepository repository;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
 
     @Autowired
     private EnderecoRepository enderecoRepository;
-
+    
     @Autowired
     private MailConfig mailConfig;
-
-    public List<ClienteResponseDTO> listar() {
-        List<Cliente> clientes = repository.findAll();
-        List<ClienteResponseDTO> dtos = new ArrayList<>();
-        for (Cliente cliente : clientes) {
-            dtos.add(new ClienteResponseDTO(cliente));
+    
+    public List<FornecedorResponseDTO> listar() {
+        List<Fornecedor> fornecedores = repository.findAll();
+        List<FornecedorResponseDTO> dtos = new ArrayList<>();
+        for (Fornecedor fornecedor : fornecedores) {
+            dtos.add(new FornecedorResponseDTO(fornecedor));
         }
         return dtos;
     }
 
     @Transactional
-    public ClienteResponseDTO inserir(ClienteRequestDTO dto) {
-        Optional<Cliente> c = repository.findByEmail(dto.getEmail());
-        if (c.isPresent()) {
+    public FornecedorResponseDTO inserir(FornecedorRequestDTO dto) {
+        Optional<Fornecedor> f = repository.findByEmail(dto.getEmail());
+        if (f.isPresent()) {
             throw new EmailException("Email existente!");
         }
         dto.setSenha(encoder.encode(dto.getSenha()));
 
-        Cliente cliente = new Cliente();
-        cliente.setNome(dto.getNome());
-        cliente.setEmail(dto.getEmail());
-        cliente.setSenha(dto.getSenha());
+        Fornecedor fornecedor = new Fornecedor();
+        fornecedor.setNome(dto.getNome());
+        fornecedor.setEmail(dto.getEmail());
+        fornecedor.setSenha(dto.getSenha());
 
         Endereco endereco = enderecoRepository.findByCep(dto.getCep());
         if (endereco != null) {
-            cliente.setEndereco(endereco);
+            fornecedor.setEndereco(endereco);
         } else {
             RestTemplate rs = new RestTemplate();
             String uri = "https://viacep.com.br/ws/" + dto.getCep() + "/json/";
             Optional<Endereco> enderecoViaCep = Optional.ofNullable(rs.getForObject(uri, Endereco.class));
-            if (enderecoViaCep.isPresent() && enderecoViaCep.get().getCep() != null) {
+            if (enderecoViaCep.get().getCep() != null) {
                 String cepSemTraco = enderecoViaCep.get().getCep().replaceAll("-", "");
                 enderecoViaCep.get().setCep(cepSemTraco);
                 endereco = new Endereco();
@@ -80,45 +80,44 @@ public class ClienteService {
                 throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
             }
         }
-        cliente.setEndereco(endereco);
-        repository.save(cliente);
-
-        mailConfig.sendEmail(cliente.getEmail(), "Confirmação de cadastro",
-                "Olá " + cliente.getNome() + ",\n\n" +
+        fornecedor.setEndereco(endereco);
+        repository.save(fornecedor); 
+        
+        mailConfig.sendEmail(fornecedor.getEmail(), "Confirmação de cadastro",
+                "Olá " + fornecedor.getNome() + ",\n\n" +
                 "Seu cadastro foi realizado com sucesso!");
 
-        return new ClienteResponseDTO(cliente);
+        return new FornecedorResponseDTO(fornecedor);
     }
-
-    public ClienteResponseDTO buscar(Long id) {
-        Optional<Cliente> cliente = repository.findById(id);
-        if (cliente.isPresent()) {
-            return new ClienteResponseDTO(cliente.get());
+    
+    public FornecedorResponseDTO buscar(Long id) {
+        Optional<Fornecedor> fornecedor = repository.findById(id);
+        if (fornecedor.isPresent()) {
+            return new FornecedorResponseDTO(fornecedor.get());
         }
-        throw new ResourceNotFoundException("Cliente não encontrado");
+        throw new ResourceNotFoundException("Fornecedor não encontrado");
     }
 
     @Transactional
-    public ClienteResponseDTO atualizar(Long id, ClienteRequestDTO dto) {
-        Cliente cliente = repository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
-
-        cliente.setNome(dto.getNome());
-        cliente.setEmail(dto.getEmail());
-
+    public FornecedorResponseDTO atualizar(Long id, FornecedorRequestDTO dto) {
+        Fornecedor fornecedor = repository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Fornecedor não encontrado"));
+        
+        fornecedor.setNome(dto.getNome());
+        fornecedor.setEmail(dto.getEmail());
+        
         if (dto.getSenha() != null && !dto.getSenha().isEmpty()) {
-            cliente.setSenha(encoder.encode(dto.getSenha()));
+            fornecedor.setSenha(encoder.encode(dto.getSenha()));
         }
 
-        
         Endereco endereco = enderecoRepository.findByCep(dto.getCep());
         if (endereco != null) {
-            cliente.setEndereco(endereco);
+            fornecedor.setEndereco(endereco);
         } else {
             RestTemplate rs = new RestTemplate();
             String uri = "https://viacep.com.br/ws/" + dto.getCep() + "/json/";
             Optional<Endereco> enderecoViaCep = Optional.ofNullable(rs.getForObject(uri, Endereco.class));
-            if (enderecoViaCep.isPresent() && enderecoViaCep.get().getCep() != null) {
+            if (enderecoViaCep.get().getCep() != null) {
                 String cepSemTraco = enderecoViaCep.get().getCep().replaceAll("-", "");
                 enderecoViaCep.get().setCep(cepSemTraco);
                 endereco = new Endereco();
@@ -132,17 +131,19 @@ public class ClienteService {
                 throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
             }
         }
-        cliente.setEndereco(endereco);
-        repository.save(cliente);
-
-        return new ClienteResponseDTO(cliente);
+        fornecedor.setEndereco(endereco);
+        repository.save(fornecedor);
+        
+        return new FornecedorResponseDTO(fornecedor);
     }
 
     @Transactional
     public void deletar(Long id) {
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Cliente não encontrado");
+            throw new ResourceNotFoundException("Fornecedor não encontrado");
         }
         repository.deleteById(id);
     }
 }
+
+

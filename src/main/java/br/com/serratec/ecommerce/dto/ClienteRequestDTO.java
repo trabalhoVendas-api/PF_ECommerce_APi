@@ -13,7 +13,8 @@ public class ClienteRequestDTO {
 	private String telefone;
 	private String numero;
 	private String complemento;
-		
+	private Endereco endereco;
+	
 	public ClienteRequestDTO(Cliente cliente) {
 		super();
 		this.id = cliente.getId();
@@ -24,7 +25,7 @@ public class ClienteRequestDTO {
 		this.complemento = cliente.getComplemento();
 		
 		this.telefone = cliente.getTelefone();
-		this.cep= cliente.getCpf();
+		this.cep= endereco.getCep();
 		
 	}
 

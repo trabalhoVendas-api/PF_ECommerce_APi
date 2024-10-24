@@ -4,6 +4,7 @@ import br.com.serratec.ecommerce.entity.Cliente;
 import br.com.serratec.ecommerce.entity.Endereco;
 
 public class ClienteResponseDTO {
+	private Long id;
 	private String nome;
 	private String email;
 	
@@ -12,8 +13,8 @@ private Endereco endereco;
 	public ClienteResponseDTO(Cliente cliente) {
 		this.nome = cliente.getNome();
 		this.email = cliente.getEmail();
+		this.id = cliente.getId();
 		this.endereco = cliente.getEndereco();
-		
 	}
 
 	public Endereco getEndereco() {
@@ -38,6 +39,14 @@ private Endereco endereco;
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	

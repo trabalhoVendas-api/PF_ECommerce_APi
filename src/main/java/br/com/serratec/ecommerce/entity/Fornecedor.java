@@ -9,52 +9,26 @@ import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 
 @Entity
-public class Cliente {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private String nome;
-	@Email
-	private String email;
-	
-	private String cpf;
-	
-	private String telefone;
-	
-	private String senha;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	//@JoinColumn(name = "id_endereco")
-	private Endereco endereco;
+public class Fornecedor {
 
-	private String numero;
-	private String complemento;
-	
-	public String getSenha() {
-		return senha;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    private String nome;
+    
+    @Email
+    private String email;
 
-	public String getNumero() {
-		return numero;
-	}
+    private String cnpj;
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
+    private String telefone;
 
-	public String getComplemento() {
-		return complemento;
-	}
+    private String senha;
 
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    //@JoinColumn(name = "id_endereco")
+    private Endereco endereco;
 
 	public Long getId() {
 		return id;
@@ -80,12 +54,12 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 	public String getTelefone() {
@@ -96,6 +70,14 @@ public class Cliente {
 		this.telefone = telefone;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -103,6 +85,8 @@ public class Cliente {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
-
+    
+    
 }
+
+
