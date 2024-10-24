@@ -12,13 +12,13 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String nome;
-	
+
 	private Integer quantidade;
-	
+
 	private Double preco;
-	
+
 	public Double getPreco() {
 		return preco;
 	}
@@ -62,6 +62,5 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
+
 }
